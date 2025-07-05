@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* WIRTHFORGE Energy-First Styles */
+
+@layer base {
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0a0a0a;
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  /* Energy Button Styles */
+  .energy-button {
+    @apply relative px-6 py-3 font-bold text-white rounded-lg transition-all duration-300;
+    background: linear-gradient(45deg, #00ffff, #4ecdc4);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+  
+  .energy-button:hover {
+    @apply transform scale-105;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+  }
+  
+  .energy-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+    box-shadow: none;
+  }
+  
+  /* Energy Input Styles */
+  .energy-input {
+    @apply w-full p-4 bg-deep-space border-2 border-energy-blue rounded-lg text-energy-white placeholder-energy-dim;
+    @apply focus:outline-none focus:border-energy-blue focus:shadow-lg;
+    box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .energy-input:focus {
+    box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.2), 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+  
+  /* Energy Panel Styles */
+  .energy-panel {
+    @apply bg-deep-space border border-energy-blue rounded-lg p-6;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Energy Text Glow */
+  .energy-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+  
+  /* Lightning Animation */
+  .lightning-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .lightning-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
+    animation: lightning-sweep 2s infinite;
+  }
+  
+  @keyframes lightning-sweep {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  
+  /* Particle Effect */
+  .particle-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #00ffff;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particle-float 3s linear infinite;
+  }
+  
+  @keyframes particle-float {
+    0% {
+      opacity: 0;
+      transform: translateY(100vh) scale(0);
+    }
+    10% {
+      opacity: 1;
+      transform: translateY(90vh) scale(1);
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(10vh) scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(0) scale(0);
+    }
+  }
+} 
