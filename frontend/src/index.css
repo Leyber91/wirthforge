@@ -15,6 +15,10 @@
   * {
     box-sizing: border-box;
   }
+  
+  .h-screen-minus-header {
+    height: calc(100vh - 120px);
+  }
 }
 
 @layer components {
@@ -113,6 +117,122 @@
     100% {
       opacity: 0;
       transform: translateY(0) scale(0);
+    }
+  }
+  
+  /* Council Visualization Styles */
+  .council-chamber {
+    position: relative;
+    background: radial-gradient(circle at center, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+  }
+  
+  .council-member {
+    position: relative;
+    display: inline-block;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2) 0%, transparent 70%);
+    transition: all 0.3s ease;
+  }
+  
+  .council-member.active {
+    animation: council-pulse 2s infinite;
+  }
+  
+  @keyframes council-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+  }
+  
+  .harmony-vortex {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #00ffff, #4ecdc4, #ff6b35, #00ffff);
+    animation: harmony-spin 3s linear infinite;
+    opacity: 0.3;
+  }
+  
+  @keyframes harmony-spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  
+  /* Energy Flow Visualization */
+  .energy-stream {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #00ffff, transparent);
+    animation: energy-flow 2s linear infinite;
+  }
+  
+  @keyframes energy-flow {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  
+  /* Navigation Styles */
+  .level-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+  }
+  
+  .level-nav button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    background: transparent;
+    color: #00ffff;
+    font-size: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .level-nav button:hover {
+    background: rgba(0, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+  
+  .level-nav button.active {
+    background: #00ffff;
+    color: #000;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .h-screen-minus-header {
+      height: calc(100vh - 80px);
+    }
+    
+    .council-chamber {
+      padding: 1rem;
+    }
+    
+    .level-nav {
+      bottom: 10px;
+      padding: 8px;
+    }
+    
+    .level-nav button {
+      width: 35px;
+      height: 35px;
+      font-size: 10px;
     }
   }
 } 

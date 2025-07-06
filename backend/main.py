@@ -8,11 +8,13 @@ from dotenv import load_dotenv
 import logging
 from rich.logging import RichHandler
 from rich.console import Console
+import asyncio
 
 from api.routes import generate, websocket as ws_routes
 from core.ollama_client import OllamaClient
 from core.energy_calculator import EnergyCalculator
 from services.energy_service import EnergyService
+from config import settings
 
 # Load environment variables
 load_dotenv()
@@ -194,6 +196,8 @@ def get_model_consciousness_level(model_name: str) -> int:
         return 5  # Wisdom
     
     return 1
+
+
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))

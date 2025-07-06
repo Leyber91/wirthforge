@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { EnergyVisualization } from '../components/energy/EnergyVisualization'
+import { LevelNavigation } from '../components/LevelNavigation'
 import { useEnergyStore } from '../stores/energyStore'
 import { useAchievements } from '../contexts/AchievementContext'
 
@@ -151,6 +152,9 @@ export const Level1Lightning: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Level Navigation */}
+      <LevelNavigation currentLevel={1} unlockedLevels={[1, 2]} />
     </div>
   )
 } 
