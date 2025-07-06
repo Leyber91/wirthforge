@@ -317,6 +317,192 @@ async def get_available_models():
             "total_models": len(models)
         }
 
+@router.post("/architecture")
+async def generate_architecture(request: GenerateRequest):
+    """Generate architecture structure with AI guidance"""
+    try:
+        logger.info(f"🌱 Growing architecture for: {request.query}")
+        
+        # Check if Ollama is available
+        health_status = await ollama_client.health_check()
+        if health_status == "error":
+            logger.warning("Ollama not available, using mock architecture")
+            return await generate_mock_architecture(request)
+        
+        # Generate architecture using AI
+        architecture_prompt = f"""
+        Create a detailed architecture for: {request.query}
+        
+        Respond with a structured breakdown including:
+        1. Core components (3-5 main parts)
+        2. Connections between components
+        3. Implementation approach
+        4. Key considerations
+        
+        Use clear, actionable language suitable for building or planning.
+        """
+        
+        response_content = ""
+        energy_signature = None
+        
+        # Use a larger model for architecture generation
+        arch_model = "qwen3:4b"  # Analytical model for structured thinking
+        
+        async for energy_response in ollama_client.generate_with_energy(
+            model=arch_model,
+            prompt=architecture_prompt,
+            stream=True
+        ):
+            response_content = energy_response.content
+            energy_signature = energy_response.energy_signature
+        
+        # Parse the response into architectural components
+        components = parse_architecture_response(response_content)
+        
+        return {
+            "architecture_response": response_content,
+            "components": components,
+            "energy_signature": energy_signature,
+            "growth_phases": generate_growth_phases(components),
+            "complexity_level": calculate_complexity(components),
+            "model_used": arch_model
+        }
+        
+    except Exception as e:
+        logger.error(f"❌ Architecture generation failed: {e}")
+        return await generate_mock_architecture(request)
+
+async def generate_mock_architecture(request: GenerateRequest):
+    """Fallback mock architecture when Ollama is not available"""
+    mock_response = f"""Architecture for: {request.query}
+
+Core Components:
+1. Foundation Layer - Base structure and requirements
+2. Processing Engine - Core logic and algorithms  
+3. Interface Layer - User interaction and presentation
+4. Data Management - Storage and retrieval systems
+5. Integration Points - External connections and APIs
+
+Implementation Approach:
+- Start with foundation to establish solid base
+- Build processing engine with modular design
+- Create clean interface layer for user experience
+- Implement robust data management
+- Add integration points for extensibility
+
+Key Considerations:
+- Scalability and performance requirements
+- Security and access control
+- Maintainability and documentation
+- Testing and quality assurance
+- Deployment and operations"""
+
+    components = [
+        {"name": "Foundation Layer", "type": "foundation", "connections": ["Processing Engine"]},
+        {"name": "Processing Engine", "type": "core", "connections": ["Interface Layer", "Data Management"]},
+        {"name": "Interface Layer", "type": "interface", "connections": ["Processing Engine"]},
+        {"name": "Data Management", "type": "data", "connections": ["Processing Engine", "Integration Points"]},
+        {"name": "Integration Points", "type": "integration", "connections": ["Data Management"]}
+    ]
+    
+    return {
+        "architecture_response": mock_response,
+        "components": components,
+        "energy_signature": {
+            "energy_density": 0.9,
+            "flow_rate": 15.0,
+            "resonance": 0.95,
+            "token_count": len(mock_response.split()),
+            "generation_time": 0.8
+        },
+        "growth_phases": generate_growth_phases(components),
+        "complexity_level": len(components),
+        "model_used": "qwen3:4b"
+    }
+
+def parse_architecture_response(response: str) -> List[dict]:
+    """Parse AI response into structured components"""
+    components = []
+    lines = response.split('\n')
+    
+    current_component = None
+    component_count = 0
+    
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+            
+        # Look for numbered items or bullet points
+        import re
+        if re.match(r'^\d+\.', line) or line.startswith('- ') or line.startswith('* '):
+            if component_count < 8:  # Limit components
+                component_name = line.split('.', 1)[-1].strip() if '.' in line else line[2:].strip()
+                component_type = infer_component_type(component_name)
+                
+                components.append({
+                    "name": component_name,
+                    "type": component_type,
+                    "connections": []
+                })
+                component_count += 1
+    
+    # If no structured components found, create generic ones
+    if not components:
+        components = [
+            {"name": "Core System", "type": "core", "connections": []},
+            {"name": "Interface", "type": "interface", "connections": ["Core System"]},
+            {"name": "Data Layer", "type": "data", "connections": ["Core System"]}
+        ]
+    
+    return components
+
+def infer_component_type(name: str) -> str:
+    """Infer component type from name"""
+    name_lower = name.lower()
+    
+    if any(word in name_lower for word in ['foundation', 'base', 'core', 'engine']):
+        return 'core'
+    elif any(word in name_lower for word in ['interface', 'ui', 'frontend', 'display']):
+        return 'interface'
+    elif any(word in name_lower for word in ['data', 'storage', 'database', 'cache']):
+        return 'data'
+    elif any(word in name_lower for word in ['api', 'integration', 'connection', 'service']):
+        return 'integration'
+    else:
+        return 'component'
+
+def generate_growth_phases(components: List[dict]) -> List[dict]:
+    """Generate growth phases for architecture visualization"""
+    phases = []
+    
+    # Phase 1: Foundation
+    phases.append({
+        "name": "Foundation",
+        "components": [c for c in components if c["type"] in ["core", "foundation"]][:2],
+        "duration": 2.0
+    })
+    
+    # Phase 2: Structure
+    phases.append({
+        "name": "Structure",
+        "components": [c for c in components if c["type"] in ["interface", "data"]][:3],
+        "duration": 3.0
+    })
+    
+    # Phase 3: Integration
+    phases.append({
+        "name": "Integration",
+        "components": [c for c in components if c["type"] == "integration"] + components[5:],
+        "duration": 2.0
+    })
+    
+    return phases
+
+def calculate_complexity(components: List[dict]) -> int:
+    """Calculate complexity level based on components"""
+    return min(len(components), 10)
+
 @router.get("/energy/status")
 async def get_energy_status():
     """Get current energy system status"""

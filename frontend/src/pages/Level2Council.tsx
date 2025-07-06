@@ -104,6 +104,69 @@ export const Level2Council: React.FC = () => {
 
     // Phase 2: Parallel discussion (3 seconds)
     try {
+      // Call the real council endpoint for parallel AI discussion
+      const response = await fetch('http://localhost:8000/api/council', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          query,
+          level: 2,
+          model: 'council' // Special model indicator for council formation
+        }),
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const data = await response.json()
+      
+      // Map backend responses to frontend council members
+      const responses = data.council_responses.map((r: { perspective: string; response: string; confidence: number }) => ({
+        id: r.perspective.toLowerCase(),
+        response: r.response,
+        confidence: r.confidence,
+        status: 'speaking' as const
+      }))
+
+      // Update members with responses
+      setCouncilFormation(prev => ({
+        ...prev,
+        members: prev.members.map(member => {
+          const response = responses.find(r => r.id === member.id)
+          return response ? { ...member, ...response } : member
+        }),
+        phase: 'convergence'
+      }))
+
+      // Phase 3: Convergence (2 seconds)
+      await new Promise(resolve => setTimeout(resolve, 2000))
+
+      // Phase 4: Harmony synthesis
+      const harmony = data.energy_convergence || calculateHarmony(responses)
+      const synthesis = data.synthesis || generateSynthesis(responses, query)
+
+      setCouncilFormation(prev => ({
+        ...prev,
+        harmony,
+        synthesis,
+        phase: 'harmony'
+      }))
+
+      setShowHarmonyMoment(true)
+      setCouncilHistory(prev => [...prev, `Q: ${query}\nSynthesis: ${synthesis}`])
+
+      // Achievement for high harmony
+      if (harmony > 0.8) {
+        unlockAchievement('harmony_master')
+      }
+
+    } catch (error) {
+      console.error('Council formation failed:', error)
+      
+      // Fallback to individual member responses if council endpoint fails
       const responses = await Promise.all([
         generateMemberResponse('reflexive', query),
         generateMemberResponse('intuitive', query),
@@ -141,30 +204,58 @@ export const Level2Council: React.FC = () => {
       if (harmony > 0.8) {
         unlockAchievement('harmony_master')
       }
-
-    } catch (error) {
-      console.error('Council formation failed:', error)
     }
   }
 
   const generateMemberResponse = async (memberId: string, query: string) => {
     const member = councilMembers.find(m => m.id === memberId)!
     
-    // Mock parallel AI response - in real implementation, this would call the backend
-    const mockResponses = {
-      reflexive: `Quick take: ${query} requires immediate attention. Direct approach recommended.`,
-      intuitive: `Creative insight: ${query} connects to deeper patterns. Consider the emotional resonance.`,
-      analytical: `Structured analysis: ${query} breaks down into three key components for systematic resolution.`
-    }
+    try {
+      // Real Ollama integration - call the backend council endpoint
+      const response = await fetch('http://localhost:8000/api/council', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          query,
+          level: 2,
+          model: member.model
+        }),
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const data = await response.json()
+      
+      // Find the response for this specific member
+      const memberResponse = data.council_responses?.find((r: any) => r.model === member.model)
+      
+      return {
+        id: memberId,
+        response: memberResponse?.response || `Error: No response from ${member.model}`,
+        confidence: memberResponse?.confidence || 0.5,
+        status: 'speaking' as const
+      }
+      
+    } catch (error) {
+      console.error(`Council member ${memberId} failed:`, error)
+      
+      // Fallback to mock if backend fails
+      const mockResponses = {
+        reflexive: `Quick take: ${query} requires immediate attention. Direct approach recommended.`,
+        intuitive: `Creative insight: ${query} connects to deeper patterns. Consider the emotional resonance.`,
+        analytical: `Structured analysis: ${query} breaks down into three key components for systematic resolution.`
+      }
 
-    // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 2000 + Math.random() * 1000))
-
-    return {
-      id: memberId,
-      response: mockResponses[memberId as keyof typeof mockResponses],
-      confidence: 0.7 + Math.random() * 0.3,
-      status: 'speaking' as const
+      return {
+        id: memberId,
+        response: mockResponses[memberId as keyof typeof mockResponses],
+        confidence: 0.7 + Math.random() * 0.3,
+        status: 'speaking' as const
+      }
     }
   }
 

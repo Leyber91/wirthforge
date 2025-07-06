@@ -15,6 +15,9 @@ interface ArchitectureSeed {
   structure: StructureNode[]
   energy: number
   complexity: number
+  aiResponse?: string
+  components?: any[]
+  growthPhases?: any[]
 }
 
 interface StructureNode {
@@ -73,21 +76,62 @@ export const Level3Architecture: React.FC = () => {
     // Generate energy particles for seed planting
     generateParticles(150, 'architecture')
 
-    // Create initial seed
-    const seed: ArchitectureSeed = {
-      id: Math.random().toString(36).substr(2, 9),
-      query,
-      mode: selectedMode,
-      growth: 0,
-      structure: [],
-      energy: 100,
-      complexity: 1
+    try {
+      // Call backend for real AI architecture generation
+      const response = await fetch('http://localhost:8000/api/architecture', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          query,
+          level: 3,
+          model: 'qwen3:4b' // Use analytical model for architecture
+        }),
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const data = await response.json()
+      
+      // Create seed with AI-generated architecture
+      const seed: ArchitectureSeed = {
+        id: Math.random().toString(36).substr(2, 9),
+        query,
+        mode: selectedMode,
+        growth: 0,
+        structure: [],
+        energy: 100,
+        complexity: data.complexity_level || 1,
+        aiResponse: data.architecture_response,
+        components: data.components,
+        growthPhases: data.growth_phases
+      }
+
+      setCurrentSeed(seed)
+
+      // Grow structure based on AI response
+      await growStructure(seed)
+      
+    } catch (error) {
+      console.error('Architecture generation failed:', error)
+      
+      // Fallback to mock seed if API fails
+      const seed: ArchitectureSeed = {
+        id: Math.random().toString(36).substr(2, 9),
+        query,
+        mode: selectedMode,
+        growth: 0,
+        structure: [],
+        energy: 100,
+        complexity: 1
+      }
+
+      setCurrentSeed(seed)
+      await growStructure(seed)
     }
-
-    setCurrentSeed(seed)
-
-    // Simulate growth phases
-    await growStructure(seed)
   }
 
   const growStructure = async (seed: ArchitectureSeed) => {
@@ -97,14 +141,16 @@ export const Level3Architecture: React.FC = () => {
       setGrowthPhase(phases[i])
       await new Promise(resolve => setTimeout(resolve, 2000))
       
-      // Update structure based on mode and phase
-      const newStructure = generateStructureForPhase(seed, phases[i])
+      // Update structure based on AI components or fallback to generated
+      const newStructure = seed.components ? 
+        generateStructureFromAI(seed.components, phases[i], i) :
+        generateStructureForPhase(seed, phases[i])
       
       setCurrentSeed(prev => prev ? {
         ...prev,
         growth: (i + 1) / phases.length,
         structure: newStructure,
-        complexity: i + 2
+        complexity: seed.complexity || i + 2
       } : null)
     }
 
@@ -113,6 +159,55 @@ export const Level3Architecture: React.FC = () => {
     setIsGrowing(false)
     
     unlockAchievement('structure_grown')
+  }
+
+  const generateStructureFromAI = (components: any[], phase: string, phaseIndex: number): StructureNode[] => {
+    const nodes: StructureNode[] = []
+    
+    // Create nodes from AI-generated components
+    components.forEach((component, index) => {
+      const angle = (index / components.length) * Math.PI * 2
+      const radius = 1.5 + (phaseIndex * 0.5) // Expand with each phase
+      const position = new THREE.Vector3(
+        Math.cos(angle) * radius,
+        Math.sin(angle) * radius,
+        (Math.random() - 0.5) * 0.5
+      )
+      
+      // Get color based on component type
+      const colorMap = {
+        core: '#ff6b35',
+        interface: '#4ecdc4',
+        data: '#9b59b6',
+        integration: '#f39c12',
+        foundation: '#e74c3c',
+        component: '#2ecc71'
+      }
+      
+      nodes.push({
+        id: `ai-${component.name.replace(/\s+/g, '-').toLowerCase()}`,
+        position,
+        type: component.type === 'core' ? 'root' : 'branch',
+        content: component.name,
+        connections: component.connections || [],
+        size: 0.2 + (phaseIndex * 0.05),
+        color: colorMap[component.type as keyof typeof colorMap] || '#4ecdc4',
+        energy: 80 + (phaseIndex * 10)
+      })
+    })
+    
+    // Add connections between components
+    nodes.forEach(node => {
+      const componentConnections = components.find(c => 
+        c.name.replace(/\s+/g, '-').toLowerCase() === node.id.replace('ai-', '')
+      )?.connections || []
+      
+      node.connections = componentConnections.map((conn: string) => 
+        `ai-${conn.replace(/\s+/g, '-').toLowerCase()}`
+      ).filter((id: string) => nodes.some(n => n.id === id))
+    })
+    
+    return nodes
   }
 
   const generateStructureForPhase = (seed: ArchitectureSeed, phase: string): StructureNode[] => {
