@@ -9,6 +9,8 @@ interface EnergyState {
   
   // Actions
   triggerLightningStrike: (query: string) => void
+  triggerAdaptiveField: (query: string) => void
+  triggerConsciousnessField: (query: string) => void
   generateParticles: (count: number, type: EnergyType) => void
   updateEnergyFlow: (flow: EnergyFlow) => void
   clearEnergy: () => void
@@ -112,6 +114,112 @@ export const useEnergyStore = create<EnergyState>((set, get) => ({
     setTimeout(() => {
       set({ isGenerating: false })
     }, 1000)
+  },
+
+  triggerAdaptiveField: (query: string) => {
+    set({ isGenerating: true })
+    
+    // Create adaptive field particles - more complex pattern
+    const particles: Particle[] = []
+    const particleCount = Math.min(query.length * 3, 150)
+    const center = new THREE.Vector3(0, 0, 0)
+    
+    for (let i = 0; i < particleCount; i++) {
+      // Create spiral pattern for adaptive field
+      const t = i / particleCount
+      const angle = t * Math.PI * 8
+      const radius = 2 + Math.sin(t * Math.PI * 4) * 1.5
+      
+      const position = new THREE.Vector3(
+        Math.cos(angle) * radius,
+        Math.sin(angle) * radius,
+        (t - 0.5) * 4
+      )
+      
+      const velocity = new THREE.Vector3(
+        Math.cos(angle + Math.PI/2) * 0.5,
+        Math.sin(angle + Math.PI/2) * 0.5,
+        Math.sin(t * Math.PI * 2) * 0.3
+      )
+      
+      const color = new THREE.Color('#45b7d1') // Adaptive cyan
+      particles.push(createParticle(position, velocity, color, 1.2))
+    }
+    
+    // Update energy flow for adaptive pattern
+    const newEnergyFlow: EnergyFlow = {
+      particles,
+      flow: {
+        path: [], // Adaptive fields don't have linear paths
+        intensity: 1.2,
+        direction: new THREE.Vector3(0, 1, 0),
+        speed: 1.5,
+        color: '#45b7d1'
+      },
+      intensity: 1.2,
+      type: 'adaptive'
+    }
+    
+    set({ energyFlow: newEnergyFlow })
+    
+    // Clear generating state after longer animation for adaptive field
+    setTimeout(() => {
+      set({ isGenerating: false })
+         }, 2000)
+   },
+
+  triggerConsciousnessField: (query: string) => {
+    set({ isGenerating: true })
+    
+    // Create consciousness field particles - complex resonance pattern
+    const particles: Particle[] = []
+    const particleCount = Math.min(query.length * 4, 200)
+    const center = new THREE.Vector3(0, 0, 0)
+    
+    for (let i = 0; i < particleCount; i++) {
+      // Create resonance field pattern
+      const t = i / particleCount
+      const layer = Math.floor(t * 5)
+      const angle = t * Math.PI * 12 + layer * Math.PI / 3
+      const radius = 1 + layer * 0.8 + Math.sin(t * Math.PI * 6) * 0.5
+      const height = Math.sin(t * Math.PI * 4) * 2
+      
+      const position = new THREE.Vector3(
+        Math.cos(angle) * radius,
+        height,
+        Math.sin(angle) * radius
+      )
+      
+      const velocity = new THREE.Vector3(
+        Math.cos(angle + Math.PI/2) * 0.3,
+        Math.sin(t * Math.PI * 3) * 0.2,
+        Math.sin(angle + Math.PI/2) * 0.3
+      )
+      
+      const color = new THREE.Color('#9b59b6') // Consciousness purple
+      particles.push(createParticle(position, velocity, color, 1.5))
+    }
+    
+    // Update energy flow for consciousness pattern
+    const newEnergyFlow: EnergyFlow = {
+      particles,
+      flow: {
+        path: [], // Consciousness fields are non-linear
+        intensity: 1.5,
+        direction: new THREE.Vector3(0, 1, 0),
+        speed: 1.0,
+        color: '#9b59b6'
+      },
+      intensity: 1.5,
+      type: 'consciousness'
+    }
+    
+    set({ energyFlow: newEnergyFlow })
+    
+    // Clear generating state after longer animation for consciousness field
+    setTimeout(() => {
+      set({ isGenerating: false })
+    }, 3000)
   },
 
   generateParticles: (count: number, type: EnergyType) => {

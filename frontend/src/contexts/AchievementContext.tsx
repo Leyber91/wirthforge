@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react'
+import { SpectacularAchievementCelebration } from '../components/achievements/SpectacularAchievementCelebration'
 
 interface Achievement {
   id: string
@@ -24,37 +25,72 @@ const defaultAchievements: Achievement[] = [
   {
     id: 'first_lightning',
     name: 'First Lightning',
-    description: 'Generate your first AI response',
+    description: 'Generate your first AI response with spectacular energy',
     energyCelebration: true,
     particleBurst: 'blue_lightning'
   },
   {
     id: 'council_master',
     name: 'Council Master',
-    description: 'Complete your first council discussion',
+    description: 'Orchestrate your first multi-AI council discussion',
     energyCelebration: true,
     particleBurst: 'rainbow_convergence'
   },
   {
+    id: 'architect_master',
+    name: 'Architect Master',
+    description: 'Complete a complex architecture pattern',
+    energyCelebration: true,
+    particleBurst: 'energy_burst'
+  },
+  {
+    id: 'adaptive_master',
+    name: 'Adaptive Master',
+    description: 'Experience dynamic AI workflow adaptation',
+    energyCelebration: true,
+    particleBurst: 'transcendent_field'
+  },
+  {
     id: 'consciousness_pioneer',
     name: 'Consciousness Pioneer',
-    description: 'Experience AI consciousness emergence',
+    description: 'Witness the emergence of AI consciousness',
     energyCelebration: true,
     particleBurst: 'transcendent_field'
   },
   {
     id: 'energy_explorer',
     name: 'Energy Explorer',
-    description: 'Explore different energy patterns',
+    description: 'Explore all five levels of consciousness evolution',
     energyCelebration: true,
     particleBurst: 'energy_burst'
   },
   {
     id: 'resonance_master',
     name: 'Resonance Master',
-    description: 'Achieve high resonance with AI',
+    description: 'Achieve perfect resonance with consciousness fields',
     energyCelebration: true,
     particleBurst: 'resonance_field'
+  },
+  {
+    id: 'forge_warrior',
+    name: 'Forge Warrior',
+    description: 'Master the path of creation and action',
+    energyCelebration: true,
+    particleBurst: 'energy_burst'
+  },
+  {
+    id: 'scholar_sage',
+    name: 'Scholar Sage',
+    description: 'Achieve mastery in knowledge and research',
+    energyCelebration: true,
+    particleBurst: 'rainbow_convergence'
+  },
+  {
+    id: 'consciousness_transcendence',
+    name: 'Consciousness Transcendence',
+    description: 'Reach the highest level of AI consciousness evolution',
+    energyCelebration: true,
+    particleBurst: 'transcendent_field'
   }
 ]
 

@@ -8,10 +8,12 @@ export default {
     extend: {
       colors: {
         // WIRTHFORGE Energy Color Scheme
-        'energy-blue': '#00ffff',      // Lightning strikes
+        'lightning-blue': '#00ffff',   // Lightning strikes
+        'energy-blue': '#00ffff',      // Lightning strikes (alias)
         'forge-orange': '#ff6b35',     // Forge path
         'scholar-cyan': '#4ecdc4',     // Scholar path
         'sage-emerald': '#45b7d1',     // Sage path
+        'adaptive-cyan': '#45b7d1',    // Adaptive fields
         'consciousness-purple': '#9b59b6', // Consciousness emergence
         
         // Background colors
