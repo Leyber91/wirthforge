@@ -99,40 +99,39 @@ export const LevelNavigation: React.FC<LevelNavigationProps> = ({
       >
         {levels.map((level) => {
           const isUnlocked = unlockedLevels.includes(level.id)
-          const isCurrent = level.id === currentLevelId
-          const isAccessible = level.id <= Math.max(...unlockedLevels) + 1
-
+          
           return (
-            <motion.button
+            <motion.div
               key={level.id}
-              onClick={() => handleLevelChange(level)}
-              disabled={!isUnlocked}
-              className={`
-                relative w-12 h-12 rounded-full border-2 transition-all duration-300
-                ${isCurrent 
-                  ? 'bg-energy-blue text-space-black border-energy-blue' 
-                  : isUnlocked 
-                    ? 'bg-transparent text-energy-blue border-energy-blue/50 hover:border-energy-blue hover:bg-energy-blue/20' 
-                    : 'bg-transparent text-energy-dim border-energy-dim/30 cursor-not-allowed'
-                }
-              `}
-              whileHover={isUnlocked ? { scale: 1.1 } : {}}
+              className={`level-card p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                isUnlocked 
+                  ? 'border-energy-blue bg-energy-blue/10 hover:bg-energy-blue/20' 
+                  : 'border-energy-dim bg-energy-dim/5 cursor-not-allowed'
+              }`}
+              whileHover={isUnlocked ? { scale: 1.05 } : {}}
               whileTap={isUnlocked ? { scale: 0.95 } : {}}
+              onClick={() => isUnlocked && handleLevelChange(level)}
             >
-              <div className="flex flex-col items-center">
-                <span className="text-lg leading-none">{level.icon}</span>
-                <span className="text-xs leading-none">{level.id}</span>
+              <div className="flex items-center space-x-3">
+                <div className={`text-2xl ${isUnlocked ? 'text-energy-blue' : 'text-energy-dim'}`}>
+                  {level.icon}
+                </div>
+                <div>
+                  <h3 className={`font-bold ${isUnlocked ? 'text-energy-white' : 'text-energy-dim'}`}>
+                    {level.name}
+                  </h3>
+                  <p className={`text-sm ${isUnlocked ? 'text-energy-gray' : 'text-energy-dim'}`}>
+                    {level.description}
+                  </p>
+                </div>
               </div>
               
-              {/* Tooltip */}
-              <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-deep-space rounded-lg p-2 border border-energy-blue/30 opacity-0 hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
-                <div className="text-xs font-medium text-energy-blue">{level.name}</div>
-                <div className="text-xs text-energy-dim">{level.description}</div>
-                {!isUnlocked && (
-                  <div className="text-xs text-red-400 mt-1">🔒 Locked</div>
-                )}
-              </div>
-            </motion.button>
+              {!isUnlocked && (
+                <div className="mt-2 text-xs text-energy-dim">
+                  🔒 Complete previous levels to unlock
+                </div>
+              )}
+            </motion.div>
           )
         })}
       </motion.div>

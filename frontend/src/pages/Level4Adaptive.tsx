@@ -546,25 +546,15 @@ const Connection: React.FC<{ start: THREE.Vector3; end: THREE.Vector3; active: b
   end, 
   active 
 }) => {
-  const lineRef = useRef<THREE.Line>(null)
-  
-  useFrame((state) => {
-    if (lineRef.current && active) {
-      const material = lineRef.current.material as THREE.LineBasicMaterial
-      material.opacity = 0.5 + 0.3 * Math.sin(state.clock.elapsedTime * 3)
-    }
-  })
-  
   const points = [start, end]
   
   return (
     <Line
-      ref={lineRef}
       points={points}
-      color={active ? '#45b7d1' : '#7f8c8d'}
+      color={active ? "#45b7d1" : "#444"}
       lineWidth={active ? 3 : 1}
       transparent
-      opacity={active ? 0.8 : 0.3}
+      opacity={active ? 0.8 : 0.4}
     />
   )
 }
