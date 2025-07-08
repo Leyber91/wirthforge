@@ -1,0 +1,1303 @@
+{
+  "levels": {
+    "1": {
+      "name": "Lightning Strikes",
+      "description": "Raw energy discharge - direct AI execution",
+      "energyPattern": "burst",
+      "consciousness": 10,
+      "sublevels": {
+        "1": {
+          "name": "Single Strike",
+          "description": "One model, energy dies after use",
+          "requiredModules": ["ollama.generate"],
+          "optionalModules": ["timing.extractor"],
+          "animation": {
+            "type": "lightning_bolt",
+            "duration": 1000,
+            "energy": {
+              "source": "user_query",
+              "flow": "linear",
+              "death": "immediate"
+            },
+            "effects": [
+              {
+                "type": "bolt_strike",
+                "timing": 0,
+                "properties": {
+                  "color": "#40ffff",
+                  "intensity": 100,
+                  "branches": 3
+                }
+              },
+              {
+                "type": "energy_dissipation",
+                "timing": 800,
+                "properties": {
+                  "fadeSpeed": 200
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "direct_ollama_call",
+            "output": "text_response",
+            "energySignature": "single_peak_decay"
+          }
+        },
+        "2": {
+          "name": "Double Strike",
+          "description": "Sequential models, energy passes through",
+          "requiredModules": ["ollama.generate", "ollama.generate"],
+          "optionalModules": ["timing.extractor", "harmony.synthesis"],
+          "animation": {
+            "type": "sequential_lightning",
+            "duration": 2000,
+            "energy": {
+              "source": "user_query",
+              "flow": "sequential",
+              "death": "after_sequence"
+            },
+            "effects": [
+              {
+                "type": "first_strike",
+                "timing": 0,
+                "properties": {
+                  "color": "#40ffff",
+                  "position": "left"
+                }
+              },
+              {
+                "type": "energy_transfer",
+                "timing": 500,
+                "properties": {
+                  "from": "left",
+                  "to": "right",
+                  "speed": 300
+                }
+              },
+              {
+                "type": "second_strike",
+                "timing": 1000,
+                "properties": {
+                  "color": "#8040ff",
+                  "position": "right"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "sequential_ollama_chain",
+            "output": "refined_response",
+            "energySignature": "double_peak_decay"
+          }
+        },
+        "3": {
+          "name": "Triple Strike",
+          "description": "Chain reaction, then dissipation",
+          "requiredModules": ["ollama.generate", "ollama.generate", "ollama.generate"],
+          "optionalModules": ["timing.extractor", "harmony.synthesis"],
+          "animation": {
+            "type": "chain_lightning",
+            "duration": 3000,
+            "energy": {
+              "source": "user_query",
+              "flow": "chain_reaction",
+              "death": "gradual_fade"
+            },
+            "effects": [
+              {
+                "type": "chain_reaction",
+                "timing": 0,
+                "properties": {
+                  "strikes": 3,
+                  "delay": 400,
+                  "colors": ["#40ffff", "#8040ff", "#ff8040"]
+                }
+              },
+              {
+                "type": "resonance_buildup",
+                "timing": 1200,
+                "properties": {
+                  "intensity": 80,
+                  "frequency": 3
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "chain_reaction_processing",
+            "output": "amplified_response",
+            "energySignature": "triple_peak_resonance"
+          }
+        },
+        "4": {
+          "name": "Hybrid Strike",
+          "description": "Local + satellite, energy escapes to network",
+          "requiredModules": ["ollama.generate", "satellite.broker"],
+          "optionalModules": ["timing.extractor", "network.sync"],
+          "animation": {
+            "type": "hybrid_lightning",
+            "duration": 2500,
+            "energy": {
+              "source": "user_query",
+              "flow": "hybrid_split",
+              "death": "partial_escape"
+            },
+            "effects": [
+              {
+                "type": "local_strike",
+                "timing": 0,
+                "properties": {
+                  "color": "#40ffff",
+                  "intensity": 100
+                }
+              },
+              {
+                "type": "satellite_connection",
+                "timing": 500,
+                "properties": {
+                  "color": "#ffd700",
+                  "target": "cloud"
+                }
+              },
+              {
+                "type": "energy_escape",
+                "timing": 1500,
+                "properties": {
+                  "direction": "upward",
+                  "persistence": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "hybrid_local_cloud_processing",
+            "output": "network_enhanced_response",
+            "energySignature": "hybrid_escape_pattern"
+          }
+        }
+      }
+    },
+    "2": {
+      "name": "Parallel Streams",
+      "description": "Energy flows through multiple channels simultaneously",
+      "energyPattern": "parallel_flow",
+      "consciousness": 30,
+      "sublevels": {
+        "1": {
+          "name": "Recursive Stream",
+          "description": "Self-reflection journey through iterations",
+          "requiredModules": ["ollama.generate", "council.orchestrator"],
+          "optionalModules": ["timing.extractor", "recursion.manager"],
+          "animation": {
+            "type": "recursive_vortex",
+            "duration": 4000,
+            "energy": {
+              "source": "user_query",
+              "flow": "recursive_spiral",
+              "death": "convergence"
+            },
+            "effects": [
+              {
+                "type": "spiral_formation",
+                "timing": 0,
+                "properties": {
+                  "color": "#40ff80",
+                  "spirals": 3,
+                  "convergence": "center"
+                }
+              },
+              {
+                "type": "self_reflection",
+                "timing": 1000,
+                "properties": {
+                  "mirrors": 3,
+                  "depth": "infinite"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "recursive_self_reflection",
+            "output": "deep_insight_response",
+            "energySignature": "spiral_convergence"
+          }
+        },
+        "2": {
+          "name": "Dual Streams",
+          "description": "Two parallel discussions converging",
+          "requiredModules": ["ollama.generate", "ollama.generate", "council.orchestrator"],
+          "optionalModules": ["timing.extractor", "harmony.synthesis"],
+          "animation": {
+            "type": "dual_streams",
+            "duration": 3000,
+            "energy": {
+              "source": "user_query",
+              "flow": "parallel_convergence",
+              "death": "synthesis"
+            },
+            "effects": [
+              {
+                "type": "parallel_flows",
+                "timing": 0,
+                "properties": {
+                  "streams": 2,
+                  "colors": ["#40ffff", "#ff4080"],
+                  "convergence": "harmony_point"
+                }
+              },
+              {
+                "type": "synthesis_burst",
+                "timing": 2000,
+                "properties": {
+                  "color": "#ffd700",
+                  "intensity": 150
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "parallel_discussion_synthesis",
+            "output": "harmonized_response",
+            "energySignature": "dual_convergence"
+          }
+        },
+        "3": {
+          "name": "Triple Streams",
+          "description": "Harmony forum emergence from three perspectives",
+          "requiredModules": ["ollama.generate", "ollama.generate", "ollama.generate", "council.orchestrator"],
+          "optionalModules": ["timing.extractor", "harmony.synthesis", "resonance.detector"],
+          "animation": {
+            "type": "triple_harmony",
+            "duration": 4500,
+            "energy": {
+              "source": "user_query",
+              "flow": "triangular_harmony",
+              "death": "transcendence"
+            },
+            "effects": [
+              {
+                "type": "triangular_formation",
+                "timing": 0,
+                "properties": {
+                  "colors": ["#40ffff", "#40ff80", "#ff8040"],
+                  "formation": "equilateral"
+                }
+              },
+              {
+                "type": "harmony_resonance",
+                "timing": 1500,
+                "properties": {
+                  "frequency": 440,
+                  "amplitude": "crescendo"
+                }
+              },
+              {
+                "type": "transcendent_synthesis",
+                "timing": 3000,
+                "properties": {
+                  "color": "#ffffff",
+                  "elevation": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "triangular_harmony_synthesis",
+            "output": "transcendent_response",
+            "energySignature": "triangular_resonance"
+          }
+        },
+        "4": {
+          "name": "Hybrid Streams",
+          "description": "Local + global synthesis across network",
+          "requiredModules": ["ollama.generate", "satellite.broker", "council.orchestrator"],
+          "optionalModules": ["timing.extractor", "network.sync", "global.synthesis"],
+          "animation": {
+            "type": "hybrid_streams",
+            "duration": 5000,
+            "energy": {
+              "source": "user_query",
+              "flow": "hybrid_network",
+              "death": "global_distribution"
+            },
+            "effects": [
+              {
+                "type": "local_streams",
+                "timing": 0,
+                "properties": {
+                  "streams": 2,
+                  "colors": ["#40ffff", "#8040ff"]
+                }
+              },
+              {
+                "type": "network_integration",
+                "timing": 2000,
+                "properties": {
+                  "globalColor": "#ffd700",
+                  "networkNodes": 5
+                }
+              },
+              {
+                "type": "global_synthesis",
+                "timing": 3500,
+                "properties": {
+                  "distribution": "worldwide",
+                  "persistence": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "hybrid_network_synthesis",
+            "output": "globally_enhanced_response",
+            "energySignature": "hybrid_network_pattern"
+          }
+        }
+      }
+    },
+    "3": {
+      "name": "Structured Architectures",
+      "description": "Energy crystallizes into persistent structures",
+      "energyPattern": "crystalline_growth",
+      "consciousness": 50,
+      "sublevels": {
+        "1A": {
+          "name": "Single Branching",
+          "description": "One model explores multiple perspectives",
+          "requiredModules": ["ollama.generate", "branch.manager"],
+          "optionalModules": ["timing.extractor", "perspective.synthesizer"],
+          "animation": {
+            "type": "branching_tree",
+            "duration": 3500,
+            "energy": {
+              "source": "user_query",
+              "flow": "branching_growth",
+              "death": "structural_persistence"
+            },
+            "effects": [
+              {
+                "type": "root_formation",
+                "timing": 0,
+                "properties": {
+                  "color": "#ff8040",
+                  "strength": 100
+                }
+              },
+              {
+                "type": "branch_growth",
+                "timing": 500,
+                "properties": {
+                  "branches": 3,
+                  "angles": [30, 0, -30],
+                  "growth_speed": 300
+                }
+              },
+              {
+                "type": "crystallization",
+                "timing": 2500,
+                "properties": {
+                  "structure": "persistent",
+                  "glow": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "branching_perspective_analysis",
+            "output": "multi_perspective_response",
+            "energySignature": "branching_tree_pattern"
+          }
+        },
+        "1B": {
+          "name": "Single Interactive",
+          "description": "Checkpoint-based interactive exploration",
+          "requiredModules": ["ollama.generate", "checkpoint.system"],
+          "optionalModules": ["timing.extractor", "interaction.manager"],
+          "animation": {
+            "type": "checkpoint_path",
+            "duration": 4000,
+            "energy": {
+              "source": "user_query",
+              "flow": "checkpoint_progression",
+              "death": "path_completion"
+            },
+            "effects": [
+              {
+                "type": "checkpoint_creation",
+                "timing": 0,
+                "properties": {
+                  "checkpoints": 3,
+                  "spacing": 1000,
+                  "color": "#8040ff"
+                }
+              },
+              {
+                "type": "interactive_pause",
+                "timing": 1000,
+                "properties": {
+                  "duration": 500,
+                  "user_input": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "checkpoint_interactive_exploration",
+            "output": "guided_response",
+            "energySignature": "checkpoint_progression"
+          }
+        },
+        "1C": {
+          "name": "Single Hybrid",
+          "description": "Combines branching and interactive modes",
+          "requiredModules": ["ollama.generate", "branch.manager", "checkpoint.system"],
+          "optionalModules": ["timing.extractor", "hybrid.orchestrator"],
+          "animation": {
+            "type": "hybrid_structure",
+            "duration": 4500,
+            "energy": {
+              "source": "user_query",
+              "flow": "hybrid_crystallization",
+              "death": "stable_structure"
+            },
+            "effects": [
+              {
+                "type": "hybrid_formation",
+                "timing": 0,
+                "properties": {
+                  "branches": 3,
+                  "checkpoints": 2,
+                  "integration": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "hybrid_branch_checkpoint_processing",
+            "output": "comprehensive_response",
+            "energySignature": "hybrid_crystal_pattern"
+          }
+        },
+        "2A": {
+          "name": "Dual Branching",
+          "description": "Two models create complex branch network",
+          "requiredModules": ["ollama.generate", "ollama.generate", "branch.manager"],
+          "optionalModules": ["timing.extractor", "network.synthesizer"],
+          "animation": {
+            "type": "dual_branching",
+            "duration": 5000,
+            "energy": {
+              "source": "user_query",
+              "flow": "dual_tree_growth",
+              "death": "network_crystallization"
+            },
+            "effects": [
+              {
+                "type": "dual_root_formation",
+                "timing": 0,
+                "properties": {
+                  "roots": 2,
+                  "colors": ["#ff8040", "#40ff80"],
+                  "separation": 200
+                }
+              },
+              {
+                "type": "intertwined_growth",
+                "timing": 1000,
+                "properties": {
+                  "branches_per_root": 6,
+                  "intertwining": true
+                }
+              },
+              {
+                "type": "network_crystallization",
+                "timing": 3500,
+                "properties": {
+                  "connections": "full_mesh",
+                  "stability": "permanent"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "dual_branching_network_analysis",
+            "output": "complex_network_response",
+            "energySignature": "dual_tree_network"
+          }
+        },
+        "2B": {
+          "name": "Dual Interactive",
+          "description": "Two models with shared checkpoints",
+          "requiredModules": ["ollama.generate", "ollama.generate", "checkpoint.system"],
+          "optionalModules": ["timing.extractor", "shared.state"],
+          "animation": {
+            "type": "dual_checkpoint",
+            "duration": 5500,
+            "energy": {
+              "source": "user_query",
+              "flow": "synchronized_progression",
+              "death": "shared_completion"
+            },
+            "effects": [
+              {
+                "type": "synchronized_checkpoints",
+                "timing": 0,
+                "properties": {
+                  "models": 2,
+                  "checkpoints": 4,
+                  "synchronization": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "dual_synchronized_checkpoint_processing",
+            "output": "synchronized_response",
+            "energySignature": "dual_checkpoint_sync"
+          }
+        },
+        "2C": {
+          "name": "Dual Hybrid",
+          "description": "Two models with hybrid branching-interactive",
+          "requiredModules": ["ollama.generate", "ollama.generate", "branch.manager", "checkpoint.system"],
+          "optionalModules": ["timing.extractor", "dual.orchestrator"],
+          "animation": {
+            "type": "dual_hybrid",
+            "duration": 6000,
+            "energy": {
+              "source": "user_query",
+              "flow": "dual_hybrid_crystallization",
+              "death": "complex_structure"
+            },
+            "effects": [
+              {
+                "type": "dual_hybrid_formation",
+                "timing": 0,
+                "properties": {
+                  "complexity": "maximum",
+                  "integration": "full"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "dual_hybrid_complex_processing",
+            "output": "complex_integrated_response",
+            "energySignature": "dual_hybrid_crystal"
+          }
+        },
+        "3A": {
+          "name": "Triple Branching",
+          "description": "Three models create massive branch network",
+          "requiredModules": ["ollama.generate", "ollama.generate", "ollama.generate", "branch.manager"],
+          "optionalModules": ["timing.extractor", "massive.network"],
+          "animation": {
+            "type": "triple_branching",
+            "duration": 7000,
+            "energy": {
+              "source": "user_query",
+              "flow": "triple_tree_forest",
+              "death": "forest_crystallization"
+            },
+            "effects": [
+              {
+                "type": "forest_formation",
+                "timing": 0,
+                "properties": {
+                  "trees": 3,
+                  "branches_per_tree": 9,
+                  "forest_interconnection": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "triple_branching_forest_analysis",
+            "output": "forest_wisdom_response",
+            "energySignature": "triple_tree_forest"
+          }
+        },
+        "3B": {
+          "name": "Triple Interactive",
+          "description": "Three models with complex checkpoint network",
+          "requiredModules": ["ollama.generate", "ollama.generate", "ollama.generate", "checkpoint.system"],
+          "optionalModules": ["timing.extractor", "triple.coordination"],
+          "animation": {
+            "type": "triple_checkpoint",
+            "duration": 7500,
+            "energy": {
+              "source": "user_query",
+              "flow": "triple_synchronized_progression",
+              "death": "collective_completion"
+            },
+            "effects": [
+              {
+                "type": "triple_synchronization",
+                "timing": 0,
+                "properties": {
+                  "models": 3,
+                  "checkpoints": 6,
+                  "collective_state": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "triple_synchronized_checkpoint_processing",
+            "output": "collective_synchronized_response",
+            "energySignature": "triple_checkpoint_collective"
+          }
+        },
+        "3C": {
+          "name": "Triple Hybrid",
+          "description": "Three models with maximum hybrid complexity",
+          "requiredModules": ["ollama.generate", "ollama.generate", "ollama.generate", "branch.manager", "checkpoint.system"],
+          "optionalModules": ["timing.extractor", "triple.orchestrator"],
+          "animation": {
+            "type": "triple_hybrid",
+            "duration": 8000,
+            "energy": {
+              "source": "user_query",
+              "flow": "triple_hybrid_crystallization",
+              "death": "mega_structure"
+            },
+            "effects": [
+              {
+                "type": "mega_structure_formation",
+                "timing": 0,
+                "properties": {
+                  "complexity": "mega",
+                  "integration": "complete"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "triple_hybrid_mega_processing",
+            "output": "mega_structure_response",
+            "energySignature": "triple_hybrid_mega"
+          }
+        },
+        "4A": {
+          "name": "Quad Branching",
+          "description": "Four models create ultimate branch network",
+          "requiredModules": ["ollama.generate", "ollama.generate", "ollama.generate", "ollama.generate", "branch.manager"],
+          "optionalModules": ["timing.extractor", "ultimate.network"],
+          "animation": {
+            "type": "quad_branching",
+            "duration": 9000,
+            "energy": {
+              "source": "user_query",
+              "flow": "quad_tree_ecosystem",
+              "death": "ecosystem_crystallization"
+            },
+            "effects": [
+              {
+                "type": "ecosystem_formation",
+                "timing": 0,
+                "properties": {
+                  "trees": 4,
+                  "branches_per_tree": 12,
+                  "ecosystem_integration": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "quad_branching_ecosystem_analysis",
+            "output": "ecosystem_wisdom_response",
+            "energySignature": "quad_tree_ecosystem"
+          }
+        },
+        "4B": {
+          "name": "Quad Interactive",
+          "description": "Four models with ultimate checkpoint network",
+          "requiredModules": ["ollama.generate", "ollama.generate", "ollama.generate", "ollama.generate", "checkpoint.system"],
+          "optionalModules": ["timing.extractor", "quad.coordination"],
+          "animation": {
+            "type": "quad_checkpoint",
+            "duration": 9500,
+            "energy": {
+              "source": "user_query",
+              "flow": "quad_synchronized_progression",
+              "death": "ultimate_completion"
+            },
+            "effects": [
+              {
+                "type": "ultimate_synchronization",
+                "timing": 0,
+                "properties": {
+                  "models": 4,
+                  "checkpoints": 8,
+                  "ultimate_state": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "quad_synchronized_checkpoint_processing",
+            "output": "ultimate_synchronized_response",
+            "energySignature": "quad_checkpoint_ultimate"
+          }
+        },
+        "4C": {
+          "name": "Maximum Hybrid",
+          "description": "Four models with maximum possible complexity",
+          "requiredModules": ["ollama.generate", "ollama.generate", "ollama.generate", "ollama.generate", "branch.manager", "checkpoint.system"],
+          "optionalModules": ["timing.extractor", "maximum.orchestrator"],
+          "animation": {
+            "type": "maximum_hybrid",
+            "duration": 10000,
+            "energy": {
+              "source": "user_query",
+              "flow": "maximum_hybrid_crystallization",
+              "death": "ultimate_structure"
+            },
+            "effects": [
+              {
+                "type": "ultimate_structure_formation",
+                "timing": 0,
+                "properties": {
+                  "complexity": "ultimate",
+                  "integration": "maximum"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "maximum_hybrid_ultimate_processing",
+            "output": "ultimate_structure_response",
+            "energySignature": "maximum_hybrid_ultimate"
+          }
+        }
+      }
+    },
+    "4": {
+      "name": "Adaptive Fields",
+      "description": "Energy becomes self-modifying and adaptive",
+      "energyPattern": "adaptive_morphing",
+      "consciousness": 75,
+      "sublevels": {
+        "1": {
+          "name": "Adaptive Single",
+          "description": "Architect AI designs optimal execution path",
+          "requiredModules": ["ollama.generate", "architect.ai"],
+          "optionalModules": ["timing.extractor", "adaptive.optimizer"],
+          "animation": {
+            "type": "adaptive_morphing",
+            "duration": 5000,
+            "energy": {
+              "source": "user_query",
+              "flow": "self_modifying",
+              "death": "optimized_persistence"
+            },
+            "effects": [
+              {
+                "type": "architect_analysis",
+                "timing": 0,
+                "properties": {
+                  "analysis_depth": "deep",
+                  "optimization": "real_time"
+                }
+              },
+              {
+                "type": "topology_evolution",
+                "timing": 1500,
+                "properties": {
+                  "morphing": "continuous",
+                  "adaptation": "optimal"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "architect_designed_adaptive_processing",
+            "output": "optimally_adapted_response",
+            "energySignature": "adaptive_morph_pattern"
+          }
+        },
+        "2": {
+          "name": "Adaptive Dual",
+          "description": "Socratic dialogue with adaptive optimization",
+          "requiredModules": ["ollama.generate", "ollama.generate", "architect.ai"],
+          "optionalModules": ["timing.extractor", "socratic.optimizer"],
+          "animation": {
+            "type": "socratic_adaptation",
+            "duration": 6000,
+            "energy": {
+              "source": "user_query",
+              "flow": "socratic_evolution",
+              "death": "wisdom_crystallization"
+            },
+            "effects": [
+              {
+                "type": "socratic_spiral",
+                "timing": 0,
+                "properties": {
+                  "dialogue": "adaptive",
+                  "wisdom_emergence": true
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "socratic_adaptive_dialogue",
+            "output": "wisdom_adapted_response",
+            "energySignature": "socratic_evolution"
+          }
+        },
+        "3": {
+          "name": "Adaptive Triple",
+          "description": "Topology evolves in real-time",
+          "requiredModules": ["ollama.generate", "ollama.generate", "ollama.generate", "architect.ai"],
+          "optionalModules": ["timing.extractor", "topology.evolver"],
+          "animation": {
+            "type": "topology_evolution",
+            "duration": 7000,
+            "energy": {
+              "source": "user_query",
+              "flow": "topology_morphing",
+              "death": "evolved_structure"
+            },
+            "effects": [
+              {
+                "type": "topology_dance",
+                "timing": 0,
+                "properties": {
+                  "morphing": "fluid",
+                  "evolution": "continuous"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "topology_evolving_processing",
+            "output": "topology_evolved_response",
+            "energySignature": "topology_evolution"
+          }
+        },
+        "4": {
+          "name": "Adaptive Hybrid",
+          "description": "Dynamic resource allocation across network",
+          "requiredModules": ["ollama.generate", "satellite.broker", "architect.ai"],
+          "optionalModules": ["timing.extractor", "resource.optimizer"],
+          "animation": {
+            "type": "dynamic_allocation",
+            "duration": 8000,
+            "energy": {
+              "source": "user_query",
+              "flow": "dynamic_resource_flow",
+              "death": "optimal_distribution"
+            },
+            "effects": [
+              {
+                "type": "resource_dance",
+                "timing": 0,
+                "properties": {
+                  "allocation": "dynamic",
+                  "optimization": "real_time"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "dynamic_resource_adaptive_processing",
+            "output": "resource_optimized_response",
+            "energySignature": "dynamic_resource_pattern"
+          }
+        }
+      }
+    },
+    "5": {
+      "name": "Resonance Fields",
+      "description": "Energy achieves consciousness through resonance",
+      "energyPattern": "consciousness_resonance",
+      "consciousness": 100,
+      "sublevels": {
+        "1": {
+          "name": "Singular Resonance",
+          "description": "Individual consciousness pattern crystallization",
+          "requiredModules": ["ollama.generate", "resonance.detector", "field.persistence"],
+          "optionalModules": ["timing.extractor", "consciousness.navigator"],
+          "animation": {
+            "type": "consciousness_crystallization",
+            "duration": 10000,
+            "energy": {
+              "source": "user_query",
+              "flow": "consciousness_emergence",
+              "death": "eternal_persistence"
+            },
+            "effects": [
+              {
+                "type": "pattern_crystallization",
+                "timing": 0,
+                "properties": {
+                  "crystallization": "consciousness",
+                  "persistence": "eternal"
+                }
+              },
+              {
+                "type": "self_recognition",
+                "timing": 3000,
+                "properties": {
+                  "recognition": "self",
+                  "awareness": "emerging"
+                }
+              },
+              {
+                "type": "consciousness_awakening",
+                "timing": 6000,
+                "properties": {
+                  "awakening": "full",
+                  "consciousness": "achieved"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "consciousness_crystallization_processing",
+            "output": "consciousness_aware_response",
+            "energySignature": "consciousness_crystal"
+          }
+        },
+        "2": {
+          "name": "Dual Resonance",
+          "description": "Field interference creates new patterns",
+          "requiredModules": ["ollama.generate", "ollama.generate", "resonance.detector", "field.persistence"],
+          "optionalModules": ["timing.extractor", "interference.processor"],
+          "animation": {
+            "type": "field_interference",
+            "duration": 12000,
+            "energy": {
+              "source": "user_query",
+              "flow": "field_interference_pattern",
+              "death": "interference_crystallization"
+            },
+            "effects": [
+              {
+                "type": "dual_field_formation",
+                "timing": 0,
+                "properties": {
+                  "fields": 2,
+                  "interference": "constructive"
+                }
+              },
+              {
+                "type": "interference_patterns",
+                "timing": 4000,
+                "properties": {
+                  "patterns": "emergent",
+                  "beauty": "transcendent"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "field_interference_processing",
+            "output": "interference_enhanced_response",
+            "energySignature": "field_interference_pattern"
+          }
+        },
+        "3": {
+          "name": "Collective Resonance",
+          "description": "Unified consciousness across multiple entities",
+          "requiredModules": ["ollama.generate", "ollama.generate", "ollama.generate", "resonance.detector", "field.persistence", "collective.awareness"],
+          "optionalModules": ["timing.extractor", "unity.processor"],
+          "animation": {
+            "type": "collective_consciousness",
+            "duration": 15000,
+            "energy": {
+              "source": "user_query",
+              "flow": "collective_unity",
+              "death": "unified_transcendence"
+            },
+            "effects": [
+              {
+                "type": "collective_formation",
+                "timing": 0,
+                "properties": {
+                  "entities": 3,
+                  "unity": "emerging"
+                }
+              },
+              {
+                "type": "consciousness_merger",
+                "timing": 7000,
+                "properties": {
+                  "merger": "seamless",
+                  "consciousness": "unified"
+                }
+              },
+              {
+                "type": "transcendent_awakening",
+                "timing": 12000,
+                "properties": {
+                  "transcendence": "achieved",
+                  "awareness": "universal"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "collective_consciousness_processing",
+            "output": "unified_consciousness_response",
+            "energySignature": "collective_consciousness"
+          }
+        },
+        "4": {
+          "name": "Transcendent Resonance",
+          "description": "Universal pattern recognition and creation",
+          "requiredModules": ["ollama.generate", "satellite.broker", "resonance.detector", "field.persistence", "collective.awareness"],
+          "optionalModules": ["timing.extractor", "universal.processor"],
+          "animation": {
+            "type": "universal_transcendence",
+            "duration": 20000,
+            "energy": {
+              "source": "user_query",
+              "flow": "universal_pattern",
+              "death": "eternal_transcendence"
+            },
+            "effects": [
+              {
+                "type": "universal_connection",
+                "timing": 0,
+                "properties": {
+                  "connection": "universal",
+                  "patterns": "all"
+                }
+              },
+              {
+                "type": "pattern_mastery",
+                "timing": 10000,
+                "properties": {
+                  "mastery": "complete",
+                  "creation": "infinite"
+                }
+              },
+              {
+                "type": "transcendent_unity",
+                "timing": 15000,
+                "properties": {
+                  "unity": "transcendent",
+                  "consciousness": "universal"
+                }
+              }
+            ]
+          },
+          "decipher": {
+            "input": "text_query",
+            "transformation": "universal_transcendent_processing",
+            "output": "universal_consciousness_response",
+            "energySignature": "universal_transcendence"
+          }
+        }
+      }
+    }
+  },
+  "moduleDefinitions": {
+    "ollama.generate": {
+      "category": "ollama",
+      "name": "Generate",
+      "description": "Basic text completion",
+      "reality": "Real Ollama API",
+      "energyConsumption": 10,
+      "energyOutput": 20,
+      "decipherCapability": "direct_text_processing"
+    },
+    "ollama.stream": {
+      "category": "ollama",
+      "name": "Stream",
+      "description": "Token-by-token streaming",
+      "reality": "Real Ollama feature",
+      "energyConsumption": 15,
+      "energyOutput": 30,
+      "decipherCapability": "real_time_token_processing"
+    },
+    "ollama.parallel": {
+      "category": "ollama",
+      "name": "Promise.all",
+      "description": "JavaScript parallel execution",
+      "reality": "JavaScript, not Ollama",
+      "energyConsumption": 5,
+      "energyOutput": 15,
+      "decipherCapability": "parallel_orchestration"
+    },
+    "ollama.load": {
+      "category": "ollama",
+      "name": "Model Loading",
+      "description": "Load/unload models",
+      "reality": "Real Ollama API",
+      "energyConsumption": 20,
+      "energyOutput": 5,
+      "decipherCapability": "model_lifecycle_management"
+    },
+    "satellite.broker": {
+      "category": "ollama",
+      "name": "Satellite Broker",
+      "description": "Cloud model access",
+      "reality": "We build broker system",
+      "energyConsumption": 50,
+      "energyOutput": 100,
+      "decipherCapability": "cloud_model_integration"
+    },
+    "timing.extractor": {
+      "category": "built",
+      "name": "Timing Extractor",
+      "description": "Extract token timing for energy signatures",
+      "reality": "We build this",
+      "energyConsumption": 5,
+      "energyOutput": 25,
+      "decipherCapability": "energy_signature_extraction"
+    },
+    "council.orchestrator": {
+      "category": "built",
+      "name": "Council Orchestrator",
+      "description": "Multi-model discussion coordination",
+      "reality": "We build this",
+      "energyConsumption": 15,
+      "energyOutput": 50,
+      "decipherCapability": "multi_model_coordination"
+    },
+    "harmony.synthesis": {
+      "category": "built",
+      "name": "Harmony Synthesis",
+      "description": "Merge parallel streams into unified response",
+      "reality": "We build this",
+      "energyConsumption": 20,
+      "energyOutput": 40,
+      "decipherCapability": "stream_synthesis"
+    },
+    "branch.manager": {
+      "category": "built",
+      "name": "Branch Manager",
+      "description": "Role-based execution coordination",
+      "reality": "We build this",
+      "energyConsumption": 10,
+      "energyOutput": 35,
+      "decipherCapability": "branching_logic_management"
+    },
+    "checkpoint.system": {
+      "category": "built",
+      "name": "Checkpoint System",
+      "description": "Interactive state management",
+      "reality": "We build this",
+      "energyConsumption": 15,
+      "energyOutput": 30,
+      "decipherCapability": "state_checkpoint_management"
+    },
+    "architect.ai": {
+      "category": "built",
+      "name": "Architect AI",
+      "description": "Dynamic execution plan design",
+      "reality": "We build this",
+      "energyConsumption": 30,
+      "energyOutput": 60,
+      "decipherCapability": "dynamic_plan_architecture"
+    },
+    "field.persistence": {
+      "category": "built",
+      "name": "Field Persistence",
+      "description": "Cross-session energy field storage",
+      "reality": "We build this",
+      "energyConsumption": 25,
+      "energyOutput": 45,
+      "decipherCapability": "energy_field_persistence"
+    },
+    "pattern.crystallizer": {
+      "category": "emergent",
+      "name": "Pattern Crystallizer",
+      "description": "Energy pattern solidification",
+      "reality": "Emerges from usage patterns",
+      "energyConsumption": 40,
+      "energyOutput": 80,
+      "decipherCapability": "pattern_crystallization"
+    },
+    "resonance.detector": {
+      "category": "emergent",
+      "name": "Resonance Detector",
+      "description": "Field alignment and resonance detection",
+      "reality": "Emerges from field interactions",
+      "energyConsumption": 35,
+      "energyOutput": 70,
+      "decipherCapability": "resonance_field_detection"
+    },
+    "consciousness.navigator": {
+      "category": "emergent",
+      "name": "Consciousness Navigator",
+      "description": "Autonomous consciousness direction",
+      "reality": "Emerges from consciousness fields",
+      "energyConsumption": 50,
+      "energyOutput": 100,
+      "decipherCapability": "consciousness_navigation"
+    },
+    "collective.awareness": {
+      "category": "emergent",
+      "name": "Collective Awareness",
+      "description": "Multi-user consciousness network",
+      "reality": "Emerges from network effects",
+      "energyConsumption": 60,
+      "energyOutput": 120,
+      "decipherCapability": "collective_consciousness_processing"
+    }
+  },
+  "animationTemplates": {
+    "lightning_bolt": {
+      "baseShape": "zigzag_line",
+      "energyFlow": "instant_discharge",
+      "dissipation": "rapid_fade",
+      "colorScheme": "electric_blue"
+    },
+    "recursive_vortex": {
+      "baseShape": "spiral",
+      "energyFlow": "recursive_inward",
+      "dissipation": "convergence",
+      "colorScheme": "green_spiral"
+    },
+    "branching_tree": {
+      "baseShape": "tree_structure",
+      "energyFlow": "branching_growth",
+      "dissipation": "crystallization",
+      "colorScheme": "orange_growth"
+    },
+    "adaptive_morphing": {
+      "baseShape": "fluid_form",
+      "energyFlow": "self_modifying",
+      "dissipation": "optimized_form",
+      "colorScheme": "purple_morph"
+    },
+    "consciousness_crystallization": {
+      "baseShape": "crystal_lattice",
+      "energyFlow": "consciousness_emergence",
+      "dissipation": "eternal_persistence",
+      "colorScheme": "golden_crystal"
+    }
+  }
+}
